@@ -1,0 +1,30 @@
+<html>
+<head>
+    <title>Aggiungi Pokémon</title>
+    <link rel="stylesheet" href="<%= locals.baseUrl %>css/style.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo"><a href="<%= locals.baseUrl %>pokemons">MyPokédex</a></div>
+        <div class="nav-links">
+            <a href="<%= locals.baseUrl %>pokemons">Home</a>
+            <a href="<%= locals.baseUrl %>new-pokemon">Aggiungi</a>
+        </div>
+    </div>
+    
+    <div style="padding: 20px; text-align: center">
+        <% if (locals.success) { %>
+        <h1 style="color: green;">Il Pokemon <%= pok_name %> è stato inserito correttamente nel database</h1>
+        <% } %>
+        <h1>Aggiungi Pokémon</h1>
+        <form action="/new-pokemon" method="POST">
+          <label>Nome: <input type="text" name="name" required></label><br><br>
+          <label>Altezza: <input type="number" name="height" required></label><br><br>
+          <label>Peso: <input type="number" name="weight" required></label><br><br>
+          <label>Esperienza: <input type="number" name="base_experience" required></label><br><br>
+
+          <button type="submit">Salva Pokémon</button>
+        </form>
+    </div>
+</body>
+</html>

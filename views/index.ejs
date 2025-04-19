@@ -1,0 +1,53 @@
+<html>
+<head>
+    <title>Elenco Pokémon</title>
+    <link rel="stylesheet" href="<%= locals.baseUrl %>css/style.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo"><a href="<%= locals.baseUrl %>pokemons">MyPokédex</a></div>
+        <div class="nav-links">
+            <a href="<%= locals.baseUrl %>pokemons">Home</a>
+            <a href="<%= locals.baseUrl %>new-pokemon">Aggiungi</a>
+        </div>
+    </div>
+    
+    <div style="padding: 20px;">
+        <h1>Pokémon nel database</h1>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Altezza</th>
+                <th>Peso</th>
+                <th>Esperienza Base</th>
+                <th>Azioni</th>
+            </tr>
+
+            <% pokemons.forEach((pokemon) => { %>
+                <tr>
+                    <td><a href="<%= locals.baseUrl %>edit-pokemon/<%= pokemon.pok_id %>"><%= pokemon.pok_id %></a></td>
+                    <td><%= pokemon.pok_name %></td>
+                    <td><%= pokemon.pok_height %></td>
+                    <td><%= pokemon.pok_weight %></td>
+                    <td><%= pokemon.pok_base_experience %></td>
+                    <td>
+                        <a href="edit-pokemon/<%= pokemon.pok_id %>">Modifica</a>
+                        <a href="delete-pokemon/<%= pokemon.pok_id %>" class="elimina-link">Elimina</a>
+                    </td>
+                </tr>
+            <% }) %>
+        </table>
+    </div>
+    <script>
+        document.querySelectorAll('.elimina-link').forEach(link => {
+          link.addEventListener('click', function (e) {
+            const conferma = confirm('Sei sicuro di voler eliminare il pokemon ?');
+            if (!conferma) {
+              e.preventDefault();
+            }
+          });
+        });
+      </script>
+</body>
+</html>
